@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="GrapesJS Studio">
+    <style>
+      /* Prize ticker styles */
+      .prize-section { padding: 28px 8px; background: linear-gradient(180deg,#0b1220 0,#071226 100%); color: #fff; }
+      .prize-section h2 { margin: 0 0 12px 8px; font-family: system-ui, -apple-system,"Segoe UI", Roboto, "Helvetica Neue", Arial; }
+      .ticker-wrap { overflow: hidden; position: relative; width: 100%; }
+      .ticker { display: flex; gap: 16px; align-items: center; will-change: transform; }
+      .prize-card { display:flex; flex-direction:column; align-items:center; gap:8px; min-width:140px; background: rgba(255,255,255,0.03); padding:12px; border-radius:10px; box-shadow: 0 4px 12px rgba(2,6,23,0.6); }
+      .prize-img { width:88px; height:88px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#08121b,#0b2130); border-radius:8px; }
+      .prize-title { font-weight:600; font-size:14px; text-align:center; margin-top:4px; }
+      .prize-sub { font-size:12px; color: #cbd5e1; }
+      /* small screens: smaller cards */
+      @media (max-width:520px){ .prize-card{ min-width:110px } .prize-img{ width:64px;height:64px } }
+    </style>
+  </head>
+
+  <body id="inth">
+    <div data-type-role="flex-row" class="gjs-plg-flex-row" id="i4ik">
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="isbu"></div>
+    </div>
+    <section class="gjs-section" id="i841">
+      <div class="gjs-container" id="ivt2">
+        <h1 id="i6pdh">contact</h1>
+        <div id="imvhm">Ever wanted to talk to the ISS? Contact is an Amateur Radio YSWS. Study for a licence, get funding for one. Design antennas, and make them. Earn prizes such as a UV5R and more.</div>
+      </div>
+    </section>
+    <section id="ihtqi" class="gjs-section">
+      <div id="ie476" class="gjs-container">
+        <div data-type-role="flex-row" id="ihzkv" class="gjs-plg-flex-row signup-row">
+          <div data-type-role="flex-column" id="iyoff" class="gjs-plg-flex-column">
+            <form method="get" id="i1pfl" class="signup-form">
+              <div id="iiyyz" class="email-wrap">
+                <input type="email" id="ijl96" placeholder="email" aria-label="Email address" class="email-field" />
+              </div>
+              <div id="irw6i"></div>
+            </form>
+          </div>
+          <div data-type-role="flex-column" id="imihi" class="gjs-plg-flex-column button-col">
+            <button type="submit" id="icq4l" __nc="" class="gjs-t-button rsvp-btn">RSVP</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="gjs-section" id="idpek">
+      <div class="gjs-container" id="ikg17">
+        <button type="button" id="ijbl8" class="gjs-t-button rsvp-btn">RSVP with Hack Club</button>
+      </div>
+    </section>
+    <div data-type-role="flex-row" class="gjs-plg-flex-row" id="ir2pt">
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ingwu">
+        <div data-type-role="flex-row" class="gjs-plg-flex-row" id="i3zew">
+          <div data-type-role="flex-column" class="gjs-plg-flex-column" id="i5hag"></div>
+        </div>
+      </div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ik8i4"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="idjll"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="iykjf"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ismwk"></div>
+    </div>
+    <div data-type-role="flex-row" class="gjs-plg-flex-row" id="iokva">
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ilx7x"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="i2no2"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="if732"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ixok1"></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ip7qk"></div>
+    </div>
+    <!-- Prize ticker: ham radio themed prizes (left→right) -->
+    <section class="prize-section" aria-label="Prizes you could earn">
+      <h2>Prizes & Funding</h2>
+      <p class="prize-sub" style="margin:0 0 12px 8px">Earn equipment, custom antennas, and funding toward projects</p>
+      <div class="ticker-wrap" id="prize-ticker-1">
+        <div class="ticker" id="prize-track-1"></div>
+      </div>
+      <div style="height:12px"></div>
+      <div class="ticker-wrap" id="prize-ticker-2">
+        <div class="ticker" id="prize-track-2"></div>
+      </div>
+    </section>
+
+    <script>
+      (function(){
+        // Sample ham-radio prizes (icons are inline SVG strings for portability)
+        const prizes = [
+          { name: 'Baofeng UV-5R', meta: 'Handheld HT', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect rx="6" width="44" height="56" x="10" y="4" fill="#0f172a" stroke="#94a3b8"/><rect x="18" y="12" width="20" height="6" rx="2" fill="#e2e8f0" opacity="0.9"/><rect x="18" y="22" width="28" height="18" rx="3" fill="#0b1220"/><circle cx="32" cy="32" r="6" fill="#38bdf8"/></svg>' },
+          { name: 'SDR Dongle', meta: 'Software-defined radio', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect x="10" y="16" width="44" height="32" rx="4" fill="#041628" stroke="#60a5fa"/><rect x="18" y="22" width="28" height="4" rx="2" fill="#60a5fa"/><rect x="22" y="30" width="20" height="10" rx="2" fill="#94a3b8"/></svg>' },
+          { name: 'Portable Antenna', meta: 'Custom-designed', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="32" cy="24" r="6" fill="#f97316"/><rect x="30" y="30" width="4" height="18" rx="2" fill="#94a3b8"/><path d="M10 46c8-10 24-10 44 0" stroke="#60a5fa" stroke-width="2" fill="none"/></svg>' },
+          { name: 'Antenna Fund', meta: '$200 funding', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect x="8" y="12" width="48" height="40" rx="6" fill="#05263a" stroke="#34d399"/><path d="M18 28h28v12H18z" fill="#34d399"/><text x="32" y="38" text-anchor="middle" font-size="10" fill="#042027" font-weight="700">$</text></svg>' },
+          { name: '1:1 Mentoring', meta: 'Antenna design help', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="24" cy="28" r="8" fill="#60a5fa"/><circle cx="40" cy="28" r="8" fill="#94a3b8"/><path d="M12 48c8-6 32-6 40 0" stroke="#e2e8f0" stroke-width="2" fill="none"/></svg>' },
+          { name: 'Coax & Connectors', meta: 'Low-loss feedline', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect x="8" y="26" width="48" height="8" rx="4" fill="#0b1220" stroke="#94a3b8"/><rect x="6" y="22" width="8" height="16" rx="2" fill="#60a5fa"/></svg>' }
+        ];
+
+        // Helper to create a card element
+        function makeCard(prize){
+          const card = document.createElement('div');
+          card.className = 'prize-card';
+          card.innerHTML = `
+            <div class="prize-img">${prize.svg}</div>
+            <div class="prize-title">${prize.name}</div>
+            <div class="prize-sub">${prize.meta}</div>
+          `;
+          return card;
+        }
+
+        // Populate track with duplicated prizes for seamless loop
+        function populateAndAnimate(trackId, durationMs, reverse){
+          const track = document.getElementById(trackId);
+          if(!track) return;
+          // append two sets
+          const firstSet = document.createDocumentFragment();
+          prizes.forEach(p => firstSet.appendChild(makeCard(p)));
+          const secondSet = firstSet.cloneNode(true);
+          track.appendChild(firstSet);
+          track.appendChild(secondSet);
+
+          // wait for layout
+          requestAnimationFrame(()=>{
+            const children = track.children;
+            if(children.length <= prizes.length) return;
+            const scrollDistance = children[prizes.length].offsetLeft;
+            // web animations for smooth, linear infinite scroll
+            track.animate(
+              [ { transform: 'translateX(0)' }, { transform: `translateX(${reverse?scrollDistance+'px':'-'+scrollDistance+'px'})` } ],
+              { duration: durationMs, iterations: Infinity, easing: 'linear' }
+            );
+          });
+        }
+
+        // init two tickers with different durations/directions
+        document.addEventListener('DOMContentLoaded', ()=>{
+          populateAndAnimate('prize-track-1', 28000, false); // left→right: false means move left (items scroll left)
+          populateAndAnimate('prize-track-2', 42000, true);  // opposite pace/direction
+          // pause animation on hover for accessibility
+          ['prize-track-1','prize-track-2'].forEach(id=>{
+            const root = document.getElementById(id);
+            if(!root) return;
+            root.parentElement.addEventListener('mouseenter', ()=>{
+              root.getAnimations().forEach(a=>a.pause());
+            });
+            root.parentElement.addEventListener('mouseleave', ()=>{
+              root.getAnimations().forEach(a=>a.play());
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+
+</html>
