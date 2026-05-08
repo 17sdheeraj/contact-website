@@ -8,78 +8,66 @@
     <meta name="generator" content="GrapesJS Studio">
     <link rel="stylesheet" href="https://css.hackclub.com/theme.css">
     <style>
-      /* Prize ticker styles using Hack Club theme */
-      .prize-section { 
-        padding: var(--spacing-5) var(--spacing-3);
-        background: linear-gradient(135deg, var(--snow) 0%, var(--sheet) 100%);
-        color: var(--text);
-      }
-      .prize-section h2 { 
-        margin: 0 0 var(--spacing-2) 0;
-        font-size: var(--font-5);
-        font-weight: var(--font-weight-bold);
-        line-height: var(--line-height-heading);
-        color: var(--text);
-      }
-      .prize-section p { margin: 0 0 var(--spacing-4) 0; }
-      .ticker-wrap { 
-        overflow: hidden; 
-        position: relative; 
-        width: 100%;
-        background: var(--elevated);
-        border-radius: var(--radii-extra);
-        margin-bottom: var(--spacing-3);
-      }
-      .ticker { 
-        display: flex; 
-        gap: var(--spacing-3);
-        align-items: center; 
-        will-change: transform;
-        padding: var(--spacing-3);
-      }
-      .prize-card { 
+      body {
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-2);
-        min-width: 160px;
-        background: var(--elevated);
-        padding: var(--spacing-3);
-        border-radius: var(--radii-extra);
-        box-shadow: var(--shadow-card);
-        border: 2px solid var(--sheet);
-        transition: all 0.2s ease;
-      }
-      .prize-card:hover {
-        box-shadow: var(--shadow-elevated);
-        transform: translateY(-4px);
-      }
-      .prize-img { 
-        width: 96px;
-        height: 96px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--sheet) 0%, var(--sunken) 100%);
-        border-radius: var(--radii-default);
-      }
-      .prize-title { 
-        font-weight: var(--font-weight-bold);
-        font-size: var(--font-2);
-        text-align: center;
+        margin: 0;
         color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(51, 214, 166, 0.24), transparent 30%),
+          radial-gradient(circle at top right, rgba(51, 142, 218, 0.22), transparent 26%),
+          radial-gradient(circle at 20% 80%, rgba(255, 140, 55, 0.16), transparent 24%),
+          linear-gradient(180deg, #f9fafc 0%, #e7eff8 42%, #f9fafc 100%);
+        position: relative;
+        overflow-x: hidden;
       }
-      .prize-sub { 
-        font-size: var(--font-1);
-        color: var(--muted);
-        text-align: center;
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(60, 72, 88, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(60, 72, 88, 0.08) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 88%);
+        -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 88%);
       }
-      /* small screens: smaller cards */
-      @media (max-width: 48em) {
-        .prize-card { min-width: 130px; }
-        .prize-img { width: 72px; height: 72px; }
+      body::after {
+        content: '';
+        position: fixed;
+        top: -6rem;
+        right: -4rem;
+        width: 20rem;
+        height: 20rem;
+        border-radius: 99999px;
+        background: radial-gradient(circle, rgba(236, 55, 80, 0.24), transparent 62%);
+        filter: blur(12px);
+        pointer-events: none;
       }
-      
+      .hero-gallery {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: var(--spacing-3);
+        padding: var(--spacing-4) var(--spacing-3) 0;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-gallery img {
+        width: min(18vw, 140px);
+        height: min(18vw, 140px);
+        object-fit: cover;
+        border-radius: var(--radii-extra);
+        border: 2px solid rgba(60, 72, 88, 0.12);
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: var(--shadow-card);
+      }
+      .hero-gallery img:nth-child(2n) {
+        transform: translateY(8px);
+      }
       /* Header and signup sections */
       #i841 {
         text-align: center;
@@ -146,6 +134,95 @@
         display: flex;
         justify-content: center;
       }
+      .gjs-section {
+        position: relative;
+        z-index: 1;
+      }
+      .site-footer {
+        margin-top: auto;
+        padding: 0 var(--spacing-3) var(--spacing-4);
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(60, 72, 88, 0.12);
+      }
+      .footer-gallery {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 var(--spacing-3);
+      }
+      .footer-inner {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding-top: var(--spacing-4);
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-4);
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .footer-brand {
+        min-width: 220px;
+      }
+      .footer-title {
+        font-size: var(--font-4);
+        margin: 0 0 var(--spacing-2);
+      }
+      .footer-copy {
+        margin: 0;
+        color: var(--muted);
+        max-width: 32rem;
+      }
+      .footer-links,
+      .footer-faq {
+        display: grid;
+        gap: var(--spacing-2);
+        min-width: 180px;
+      }
+      .footer-faq details {
+        border-radius: var(--radii-default);
+        border: 1px solid rgba(60, 72, 88, 0.14);
+        background: rgba(249, 250, 252, 0.82);
+        overflow: hidden;
+      }
+      .footer-faq summary {
+        cursor: pointer;
+        list-style: none;
+        padding: var(--spacing-2) var(--spacing-3);
+        font-weight: var(--font-weight-bold);
+        color: var(--text);
+      }
+      .footer-faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .footer-faq summary::after {
+        content: '+';
+        float: right;
+        color: var(--muted);
+      }
+      .footer-faq details[open] summary::after {
+        content: '–';
+      }
+      .footer-faq-answer {
+        padding: 0 var(--spacing-3) var(--spacing-3);
+        margin: 0;
+        color: var(--muted);
+      }
+      .footer-label {
+        margin: 0 0 var(--spacing-1);
+        font-size: var(--font-1);
+        font-weight: var(--font-weight-bold);
+        letter-spacing: var(--letter-spacing-headline);
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .footer-faq-item {
+        min-height: 2.5rem;
+        padding: var(--spacing-2) var(--spacing-3);
+        border-radius: var(--radii-default);
+        border: 1px dashed rgba(60, 72, 88, 0.25);
+        background: rgba(249, 250, 252, 0.7);
+        color: var(--muted);
+      }
       
       /* Responsive adjustments */
       @media (max-width: 48em) {
@@ -154,6 +231,7 @@
         #imvhm { font-size: var(--font-2); }
         .signup-row { flex-direction: column !important; align-items: center !important; }
         .email-wrap { min-width: 100%; max-width: 300px; }
+        .footer-inner { flex-direction: column; }
       }
     </style>
   </head>
@@ -164,8 +242,8 @@
     </div>
     <section class="gjs-section" id="i841">
       <div class="gjs-container" id="ivt2">
-        <h1 id="i6pdh">contact</h1>
-        <div id="imvhm">Ever wanted to talk to the ISS? Contact is an Amateur Radio YSWS. Study for a licence, get funding for one. Design antennas, and make them. Earn prizes such as a UV5R and more.</div>
+        <h1 id="i6pdh">Contact</h1>
+        <div id="imvhm">Ever wanted to talk to the ISS? Contact is an Amateur Radio YSWS. Study for a licence, get funding for one. Design antennas, and make them. Earn prizes such as a UV5R and more. RSVP NOW!!!!!!!</div>
       </div>
     </section>
     <section id="ihtqi" class="gjs-section">
@@ -203,85 +281,39 @@
       <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ixok1"></div>
       <div data-type-role="flex-column" class="gjs-plg-flex-column" id="ip7qk"></div>
     </div>
-    <!-- Prize ticker: ham radio themed prizes (left→right) -->
-    <section class="prize-section" aria-label="Prizes you could earn">
-      <h2>Prizes & Funding</h2>
-      <p class="prize-sub" style="margin:0 0 12px 8px">Earn equipment, custom antennas, and funding toward projects</p>
-      <div class="ticker-wrap" id="prize-ticker-1">
-        <div class="ticker" id="prize-track-1"></div>
+    <br>
+    <br>
+    <br>
+    <div class="hero-gallery footer-gallery" aria-label="Featured images">
+      <img src="ISS_picto.png" alt="ISS pictogram">
+      <img src="antenna_img.png" alt="Antenna">
+      <img src="radio_img.png" alt="Radio">
+      <img src="sattelite.png" alt="Satellite">
+      <img src="waveform.jpeg" alt="Waveform">
+    </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h2 class="footer-title">Contact</h2>
+          <p class="footer-copy">An Amateur Radio YSWS for learning, building antennas, and getting funded to make radio projects happen.</p>
+        </div>
+        <div class="footer-links">
+          <p class="footer-label">Main Website</p>
+          <a href="https://hackclub.com" target="_blank" rel="noopener noreferrer">hackclub.com</a>
+        </div>
+        <div class="footer-faq">
+          <p class="footer-label">FAQ</p>
+          <details>
+            <summary>Question placeholder 1</summary>
+            <p class="footer-faq-answer">Answer placeholder 1.</p>
+          </details>
+          <details>
+            <summary>Question placeholder 2</summary>
+            <p class="footer-faq-answer">Answer placeholder 2.</p>
+          </details>
+        </div>
       </div>
-      <div style="height:12px"></div>
-      <div class="ticker-wrap" id="prize-ticker-2">
-        <div class="ticker" id="prize-track-2"></div>
-      </div>
-    </section>
-
-    <script>
-      (function(){
-        // Sample ham-radio prizes (icons are inline SVG strings for portability)
-        const prizes = [
-          { name: 'Baofeng UV-5R', meta: 'Handheld HT', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect rx="6" width="44" height="56" x="10" y="4" fill="#0f172a" stroke="#94a3b8"/><rect x="18" y="12" width="20" height="6" rx="2" fill="#e2e8f0" opacity="0.9"/><rect x="18" y="22" width="28" height="18" rx="3" fill="#0b1220"/><circle cx="32" cy="32" r="6" fill="#38bdf8"/></svg>' },
-          { name: 'SDR Dongle', meta: 'Software-defined radio', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect x="10" y="16" width="44" height="32" rx="4" fill="#041628" stroke="#60a5fa"/><rect x="18" y="22" width="28" height="4" rx="2" fill="#60a5fa"/><rect x="22" y="30" width="20" height="10" rx="2" fill="#94a3b8"/></svg>' },
-          { name: 'Portable Antenna', meta: 'Custom-designed', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="32" cy="24" r="6" fill="#f97316"/><rect x="30" y="30" width="4" height="18" rx="2" fill="#94a3b8"/><path d="M10 46c8-10 24-10 44 0" stroke="#60a5fa" stroke-width="2" fill="none"/></svg>' },
-          { name: 'Antenna Fund', meta: '$200 funding', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect x="8" y="12" width="48" height="40" rx="6" fill="#05263a" stroke="#34d399"/><path d="M18 28h28v12H18z" fill="#34d399"/><text x="32" y="38" text-anchor="middle" font-size="10" fill="#042027" font-weight="700">$</text></svg>' },
-          { name: '1:1 Mentoring', meta: 'Antenna design help', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="24" cy="28" r="8" fill="#60a5fa"/><circle cx="40" cy="28" r="8" fill="#94a3b8"/><path d="M12 48c8-6 32-6 40 0" stroke="#e2e8f0" stroke-width="2" fill="none"/></svg>' },
-          { name: 'Coax & Connectors', meta: 'Low-loss feedline', svg: '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect x="8" y="26" width="48" height="8" rx="4" fill="#0b1220" stroke="#94a3b8"/><rect x="6" y="22" width="8" height="16" rx="2" fill="#60a5fa"/></svg>' }
-        ];
-
-        // Helper to create a card element
-        function makeCard(prize){
-          const card = document.createElement('div');
-          card.className = 'prize-card';
-          card.innerHTML = `
-            <div class="prize-img">${prize.svg}</div>
-            <div class="prize-title">${prize.name}</div>
-            <div class="prize-sub">${prize.meta}</div>
-          `;
-          return card;
-        }
-
-        // Populate track with duplicated prizes for seamless loop
-        function populateAndAnimate(trackId, durationMs, reverse){
-          const track = document.getElementById(trackId);
-          if(!track) return;
-          // append two sets
-          const firstSet = document.createDocumentFragment();
-          prizes.forEach(p => firstSet.appendChild(makeCard(p)));
-          const secondSet = firstSet.cloneNode(true);
-          track.appendChild(firstSet);
-          track.appendChild(secondSet);
-
-          // wait for layout
-          requestAnimationFrame(()=>{
-            const children = track.children;
-            if(children.length <= prizes.length) return;
-            const scrollDistance = children[prizes.length].offsetLeft;
-            // web animations for smooth, linear infinite scroll
-            track.animate(
-              [ { transform: 'translateX(0)' }, { transform: `translateX(${reverse?scrollDistance+'px':'-'+scrollDistance+'px'})` } ],
-              { duration: durationMs, iterations: Infinity, easing: 'linear' }
-            );
-          });
-        }
-
-        // init two tickers with different durations/directions
-        document.addEventListener('DOMContentLoaded', ()=>{
-          populateAndAnimate('prize-track-1', 28000, false); // left→right: false means move left (items scroll left)
-          populateAndAnimate('prize-track-2', 42000, true);  // opposite pace/direction
-          // pause animation on hover for accessibility
-          ['prize-track-1','prize-track-2'].forEach(id=>{
-            const root = document.getElementById(id);
-            if(!root) return;
-            root.parentElement.addEventListener('mouseenter', ()=>{
-              root.getAnimations().forEach(a=>a.pause());
-            });
-            root.parentElement.addEventListener('mouseleave', ()=>{
-              root.getAnimations().forEach(a=>a.play());
-            });
-          });
-        });
-      })();
-    </script>
+    </footer>
   </body>
 
 </html>
